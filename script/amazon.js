@@ -1,4 +1,5 @@
-
+/*This is for generating html for each Item this is the easy way to 
+adding more item without copy paste html */
 let productsHTML='';
 products.forEach((product)=>{
   productsHTML+=`    <div class="product-container">
@@ -44,19 +45,45 @@ products.forEach((product)=>{
 
           <button class="add-to-cart-button button-primary
           js-add-to-cart"
-          data-product-name="${product.name}">
+          data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>`;
 });
+
+
+
 document.querySelector('.js-product-grid').innerHTML=productsHTML;
 document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
 button.addEventListener('click',()=>{
-  const productName=button.dataset.productName;
-  cart.push({
-    productName:productName,
-    quantity:1
-  })
-  console.log(cart)
+  const productId=button.dataset.productId;
+addtocart(productId);
+updatecartquantity();
   })
 });
+
+//This javascript code is for cart.js//
+//The cart arry is in cart.js where the following code is push there//
+function addtocart(productId){
+  let matchingItem;
+  cart.forEach((cartitem)=>{
+   if(productId===cartitem.productId){
+    matchingItem=cartitem;
+   }
+  })
+  if(matchingItem){
+    matchingItem.quantity+=1;
+  }else{
+    cart.push({
+      productId:productId,
+      quantity:1
+    })
+  }
+}
+function updatecartquantity(){
+  let cartquantity=0;
+ cart.forEach((cartitem)=>{
+cartquantity+=cartitem.quantity
+ });
+document.querySelector('.js-cart-quantity').innerHTML=cartquantity
+}
