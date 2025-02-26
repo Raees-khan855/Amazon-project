@@ -1,5 +1,6 @@
 /*This is for generating html for each Item this is the easy way to 
 adding more item without copy paste html */
+import{products} from "../data/products"
 let productsHTML='';
 products.forEach((product)=>{
   productsHTML+=`    <div class="product-container">
@@ -62,6 +63,7 @@ updatecartquantity();
   })
 });
 
+
 //This javascript code is for cart.js//
 //The cart arry is in cart.js where the following code is push there//
 function addtocart(productId){
@@ -87,3 +89,14 @@ cartquantity+=cartitem.quantity
  });
 document.querySelector('.js-cart-quantity').innerHTML=cartquantity
 }
+
+cart.forEach((cartItem)=>{
+const productId=cartItem.productId
+
+let matchingProduct;
+
+products.forEach((products)=>{
+  if(products.productId===productId)
+      matchingProduct=products
+})
+});
