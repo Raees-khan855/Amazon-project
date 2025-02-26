@@ -1,6 +1,6 @@
 /*This is for generating html for each Item this is the easy way to 
 adding more item without copy paste html */
-import{cart, addtocart, updatecartquantity} from "../data/cart.js"
+import{cart, addtocart} from "../data/cart.js"
 import{products} from "../data/products.js"
 let productsHTML='';
 products.forEach((product)=>{
@@ -63,3 +63,22 @@ addtocart(productId);
 updatecartquantity();
   })
 });
+function updatecartquantity(){
+  let cartquantity=0;
+ cart.forEach((cartitem)=>{
+cartquantity+=cartitem.quantity
+ });
+document.querySelector('.js-cart-quantity').innerHTML=cartquantity
+}
+
+cart.forEach((cartItem)=>{
+const productId=cartItem.productId
+
+let matchingProduct;
+
+products.forEach((products)=>{
+  if(products.productId===productId)
+      matchingProduct=products
+})
+});
+ 
