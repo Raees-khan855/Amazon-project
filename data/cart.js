@@ -7,7 +7,7 @@ export const cart=[{
 }];
 
 
-//This code is code is for productId //
+//This code is code is for productIt to addtocart //
 export function addtocart(productId){
     let matchingItem;
     cart.forEach((cartitem)=>{
@@ -24,3 +24,4 @@ export function addtocart(productId){
       })
     }
   }
+
