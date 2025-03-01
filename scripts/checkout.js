@@ -2,6 +2,11 @@
 import { cart,removeformcart} from "../data/cart.js";
 import{products} from "../data/products.js";
 import{formatCurrency} from '../scripts/utils/money.js';
+//External Libraries//
+const today=dayjs();
+const deliveryDate=today.add(deliverOptions.deliverDays,'day');
+const dataString=deliveryDate.format('dddd, MMMM D');
+
 
 let cartSummaryHtml='';
 
@@ -20,7 +25,7 @@ cartSummaryHtml+=
     `<div class="cart-item-container
     js-cart-item-container-${matchingProduct.id}">
     <div class="delivery-date">
-        Delivery date: Tuesday, June 21
+        Delivery date: ${dataString}
     </div>
 
     <div class="cart-item-details-grid">
